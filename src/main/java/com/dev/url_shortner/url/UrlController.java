@@ -22,7 +22,11 @@ public class UrlController {
 
     @PostMapping(path = "/add")
     public void addNewUrl(@RequestBody Url url) {
-        System.out.println(url);
         urlService.addNewUrl(url);
+    }
+
+    @DeleteMapping(path = "/delete/{urlId}")
+    public void deleteUrl(@PathVariable("urlId") Long urlId) {
+        urlService.deleteUrl(urlId);
     }
 }

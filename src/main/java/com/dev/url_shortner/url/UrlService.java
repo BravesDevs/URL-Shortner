@@ -33,4 +33,16 @@ public class UrlService {
         }
     }
 
+    public void deleteUrl(Long urlId) {
+        try {
+            boolean exists = urlRepository.existsById(urlId);
+            if (!exists) {
+                throw new IllegalStateException("Url with id " + urlId + " does not exist");
+            }
+            urlRepository.deleteById(urlId);
+        } catch (Exception e) {
+            throw new IllegalStateException("Something went wrong. Please try again.");
+        }
+    }
+
 }
