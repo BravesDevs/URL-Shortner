@@ -7,7 +7,10 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, String> {
     User findUserByEmail(String email);
 
+    boolean existsByEmail(String email);
+
+    @SuppressWarnings({ "null", "unchecked" })
     User save(User user);
 
-    void delete(User user);
+    void delete(@SuppressWarnings("null") User user);
 }

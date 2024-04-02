@@ -9,12 +9,12 @@ public class Url {
 
     @Id
     @SequenceGenerator(name = "url_sequence", sequenceName = "url_sequence", allocationSize = 1)
-
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "url_sequence")
 
     private Long id;
     private String longUrl;
     private String shortUrl;
+    private String userEmail;
 
     @ManyToOne
     @JoinColumn(name = "email", referencedColumnName = "email")
@@ -30,6 +30,10 @@ public class Url {
 
     public User getUser() {
         return user;
+    }
+
+    public String getUserEmail() {
+        return user.getEmail();
     }
 
     public void setUser(User user) {
@@ -55,15 +59,33 @@ public class Url {
         this.shortUrl = shortUrl;
     }
 
+    public Url(Long id, String longUrl, String shortUrl, User user) {
+        this.id = id;
+        this.longUrl = longUrl;
+        this.shortUrl = shortUrl;
+        this.user = user;
+    }
+
     public Url(String longUrl, String shortUrl, User user) {
         this.longUrl = longUrl;
         this.shortUrl = shortUrl;
         this.user = user;
     }
 
+    public Url(String longUrl, User user) {
+        this.longUrl = longUrl;
+        this.user = user;
+    }
+
     public Url() {
     }
 
+    public Url(Long id, String longUrl, String shortUrl, String userEmail) {
+        this.id = id;
+        this.longUrl = longUrl;
+        this.shortUrl = shortUrl;
+        this.userEmail = userEmail;
+    }
 
     @Override
     public String toString() {
